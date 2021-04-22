@@ -79,7 +79,7 @@ fabric.properties
 *._.DS_Store
 
 # configuration files
-.yaml
+*.yaml
 
 # Jupyter Notebook files
 .ipynb_checkpoints
