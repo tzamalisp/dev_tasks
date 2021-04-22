@@ -1,2 +1,4 @@
-path_to_file: null
-file_name: null
+# path of the app
+path_app_saving: null
+# images path
+images: images
