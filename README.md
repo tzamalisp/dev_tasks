@@ -12,5 +12,5 @@ Please, say a "hello" to my personal profiles on the various social platforms:
 
 ## Configuration
 
-Inside the `project_configuration` directory, change the `config.yaml.sample` and set
-the appropriate personal configurations for the relevant task.
+Inside the `project_configuration` directory, change the `config.yaml.sample` to `config.yaml`
+and set the appropriate personal configurations for the relevant task.
