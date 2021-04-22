@@ -28,3 +28,25 @@ def load_yaml(path_to_file=None, file_name=None):
     except ImportError:
         print("WARNING: could not import yaml module")
         return None
+
+
+def save_paths(config, section_id):
+    """
+    Make the save paths
+    Args:
+        config: The configuration file.
+        section_id: The ID name of the section where to save the data.
+    Returns:
+        Dictionary with the save paths.
+    """
+    if config["path_app_saving"] is None:
+        path_main_saving_dir = os.getcwd()
+    else:
+        path_main_saving_dir = config["path_app_saving"]
+    # where to save the images
+    path_images = os.path.join(path_main_saving_dir, "images", section_id)
+    os.makedirs(path_images, exist_ok=True)
+
+    return {
+        "path_images": path_images
+    }
