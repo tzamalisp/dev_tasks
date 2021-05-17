@@ -84,3 +84,8 @@ fabric.properties
 # Jupyter Notebook files
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
+
+# HAR and HAPT Datasets: check the link at the README file of how to download it
+UCI HAR Dataset/
+UCI HAR Dataset.names
+HAPT Dataset
