@@ -1,0 +1,7 @@
+# training
+"verbose": 0
+"epochs": 10
+"batch_size": 32
+
+# experiment
+"repeats": 10

@@ -1,29 +1,12 @@
 import os
-
-import tensorflow as tf
-from tensorflow import keras
-from numpy import mean
-from numpy import std
-from numpy import dstack
-from pandas import read_csv
 import pandas as pd
-from matplotlib import pyplot
-
-import sys
-print("Python version")
-print(sys.version)
-print("Version info.")
-print(sys.version_info)
-
-pd.set_option('display.max_columns', 30)
-
-main_app_path = os.path.dirname(os.path.dirname(os.getcwd()))
-print(main_app_path)
+import numpy as np
+import tensorflow as tf
 
 
 # load a single file as a numpy array
 def load_file(filepath):
-    dataframe = read_csv(filepath, header=None, delim_whitespace=True)
+    dataframe = pd.read_csv(filepath, header=None, delim_whitespace=True)
     return dataframe.values
 
 
@@ -36,7 +19,7 @@ def load_group(filenames, prefix=''):
         data = load_file(prefix + name)
         loaded.append(data)
     # stack group so that features are the 3rd dimension
-    loaded = dstack(loaded)
+    loaded = np.dstack(loaded)
     return loaded
 
 
@@ -77,49 +60,3 @@ def load_dataset(main_app_path, prefix=''):
     testy = tf.keras.utils.to_categorical(testy)
     print(trainX.shape, trainy.shape, testX.shape, testy.shape)
     return trainX, trainy, testX, testy
-
-
-# fit and evaluate a model
-def evaluate_model(trainX, trainy, testX, testy):
-    verbose, epochs, batch_size = 0, 10, 32
-    n_timesteps, n_features, n_outputs = trainX.shape[1], trainX.shape[2], trainy.shape[1]
-    model = keras.models.Sequential()
-    model.add(keras.layers.Conv1D(filters=64, kernel_size=3, activation='relu', input_shape=(n_timesteps, n_features)))
-    model.add(keras.layers.Conv1D(filters=64, kernel_size=3, activation='relu'))
-    model.add(keras.layers.Dropout(0.5))
-    model.add(keras.layers.MaxPooling1D(pool_size=2))
-    model.add(keras.layers.Flatten())
-    model.add(keras.layers.Dense(100, activation='relu'))
-    model.add(keras.layers.Dense(n_outputs, activation='softmax'))
-    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-    # fit network
-    model.fit(trainX, trainy, epochs=epochs, batch_size=batch_size, verbose=verbose)
-    # evaluate model
-    _, accuracy = model.evaluate(testX, testy, batch_size=batch_size, verbose=0)
-    return accuracy
-
-
-# summarize scores
-def summarize_results(scores):
-    print(scores)
-    m, s = mean(scores), std(scores)
-    print('Accuracy: %.3f%% (+/-%.3f)' % (m, s))
-
-
-# run an experiment
-def run_experiment(repeats=10):
-    # load data
-    trainX, trainy, testX, testy = load_dataset(main_app_path)
-    # repeat experiment
-    scores = list()
-    for r in range(repeats):
-        score = evaluate_model(trainX, trainy, testX, testy)
-        score = score * 100.0
-        print('>#%d: %.3f' % (r + 1, score))
-        scores.append(score)
-    # summarize results
-    summarize_results(scores)
-
-
-# run the experiment
-run_experiment()

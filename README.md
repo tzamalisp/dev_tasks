@@ -10,6 +10,13 @@ Please, say a "hello" to my personal profiles on the various social platforms:
 - [Google Scholar](https://scholar.google.com/citations?user=zo_G-TIAAAAJ&hl=en)
 - [dblp](https://dblp.uni-trier.de/pid/227/5459.html)
 
+## Tasks
+
+### Human Activity Recognition
+
+Run `python main_har.py` to execute this task. For more information check the `README` file inside the
+`human_activity_recognition` directory.
+
 ## Configuration
 
 Inside the `project_configuration` directory, change the `config.yaml.sample` to `config.yaml`

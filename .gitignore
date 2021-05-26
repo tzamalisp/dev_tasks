@@ -72,6 +72,9 @@ fabric.properties
 
 .idea/
 
+# Python
+__pycache__
+
 
 # ------------------- Extra files ----------------------
 # macOS files
