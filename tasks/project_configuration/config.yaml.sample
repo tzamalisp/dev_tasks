@@ -1,0 +1,12 @@
+# path of the app
+path_app_saving: null
+# images path
+images: images
+
+# NN training
+"verbose": 0
+"epochs": 10
+"batch_size": 32
+
+# NN experiment
+"repeats": 10

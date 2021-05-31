@@ -1,9 +1,9 @@
 import os
 import sys
-from human_activity_recognition.load_data import load_dataset
-from human_activity_recognition.evaluate import evaluate_model, summarize_results
-from human_activity_recognition.models import cnn_params, cnn
-from utils.configurations import config_data
+from tasks.human_activity_recognition.load_data import load_dataset
+from tasks.human_activity_recognition.evaluate import evaluate_model, summarize_results
+from tasks.human_activity_recognition.models import cnn_params, cnn
+from tasks.project_configuration.configuration import config_data
 
 print("Python version: {}".format(sys.version))
 print("Version info: {}".format(sys.version_info))
@@ -34,10 +34,8 @@ def run_experiment(config):
 
 
 if __name__ == '__main__':
-    # main_app_path = os.path.dirname(os.path.dirname(os.getcwd()))
     main_app_path = os.getcwd()
-    har_path = os.path.join(main_app_path, "human_activity_recognition", "config.yaml")
-    config_data = config_data(config_file_path=har_path)
+    config_data = config_data()
     print(config_data)
     print(main_app_path)
     # run the experiment

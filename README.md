@@ -14,7 +14,7 @@ Please, say a "hello" to my personal profiles on the various social platforms:
 
 ### Human Activity Recognition
 
-Run `python main_har.py` to execute this task. For more information check the `README` file inside the
+Run `python har.py` to execute this task. For more information check the `README` file inside the
 `human_activity_recognition` directory.
 
 ## Configuration

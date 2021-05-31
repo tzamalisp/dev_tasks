@@ -15,7 +15,7 @@ def load_group(filenames, prefix=''):
     print("filenames in load_group:", filenames)
     loaded = list()
     for name in filenames:
-        print("lalaaa:", prefix + name)
+        print("loading data:", prefix + name)
         data = load_file(prefix + name)
         loaded.append(data)
     # stack group so that features are the 3rd dimension
