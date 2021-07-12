@@ -16,7 +16,6 @@ def config_data(path_to_file=None, file_name="config"):
     """
     if path_to_file is None:
         path = os.path.join(os.getcwd(), "tasks", "project_configuration")
-        print(path)
     else:
         path = path_to_file
     if file_name is not None:

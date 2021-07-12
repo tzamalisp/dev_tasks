@@ -94,3 +94,6 @@ __pycache__
 # HAR and HAPT Datasets: check the link at the README file of how to download it
 UCI HAR Dataset/
 HAPT Dataset/
+
+# WISDM Activity Recognition dataset
+WISDM_ar_v1.1/
