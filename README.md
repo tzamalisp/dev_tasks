@@ -21,3 +21,18 @@ Run `python har.py` to execute this task. For more information check the `README
 
 Inside the `project_configuration` directory, change the `config.yaml.sample` to `config.yaml`
 and set the appropriate personal configurations for the relevant task.
+
+## Bash Scripting
+
+### Download all the remote branches from GitHub locally at once
+
+Download the `get_all_branches.sh` to the repository you want to download all the
+remote GitHub branches.
+
+Then, in the terminal, run:
+1) `chmod +x getAllBranches.sh`
+2) `sh getAllBranches.sh`
+
+Check the result at the local repository to show all the branches by running:
+
+`git branch -a`
