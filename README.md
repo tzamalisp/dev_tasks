@@ -30,8 +30,8 @@ Download the `get_all_branches.sh` to the repository you want to download all th
 remote GitHub branches.
 
 Then, in the terminal, run:
-1) `chmod +x getAllBranches.sh`
-2) `sh getAllBranches.sh`
+1) `chmod +x get_all_branches.sh`
+2) `sh get_all_branches.sh`
 
 Check the result at the local repository to show all the branches by running:
 
