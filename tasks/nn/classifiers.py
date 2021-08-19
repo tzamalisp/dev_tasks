@@ -8,13 +8,12 @@ from tensorflow.keras.layers import Flatten
 from tensorflow.keras.layers import BatchNormalization
 from tensorflow.keras.layers import Dropout
 from tensorflow.keras.layers import Activation
-from tensorflow.keras.wrappers.scikit_learn import RandomizedSearchCV, KerasClassifier
+from numpy import reciprocal
+from tensorflow.keras.wrappers.scikit_learn import KerasClassifier
+from sklearn.model_selection import RandomizedSearchCV, GridSearchCV
 
-from scipy.stats import reciprocal
-from sklearn.model_selection import Randomized, GridSearchCV
 
-
-def build_model(config):
+def build_model():
     model = Sequential()
     model.add(Conv2D(32, (3, 3), activation='relu', kernel_initializer='he_uniform', input_shape=(28, 28, 1)))
     model.add(BatchNormalization())
@@ -31,18 +30,26 @@ def build_model(config):
     return model
 
 
-def keras_classifier(config, model, grid_mode="randomized"):
-    keras.backend.clear_session()
-    keras_clf = KerasClassifier(build_fn=create_model)
-    model.set_params(**clf_params)
-    print("Classifier Parameters:\n", model.get_params())
+def keras_classifier(config, clf_params, param_grid, grid_mode="randomized"):
+    keras_clf = KerasClassifier(build_fn=build_model)
+    keras_clf.set_params(**clf_params)
+    print("Classifier Parameters:\n", keras_clf.get_params())
     if grid_mode == "randomized":
-        clf = RandomizedSearchCV(keras_clf,
-                                 param_distribs,
-                                 n_iter=10,
-                                 cv=3,
-                                 verbose=2)
+        clf = RandomizedSearchCV(estimator=keras_clf,
+                                 param_distributions=param_grid,
+                                 n_iter=config["rndm_search"]["n_iter"],
+                                 cv=config["tuning_train"]["cv"],
+                                 verbose=config["tuning_train"]["verbose"])
     elif grid_mode == "gridsearch":
-        clf = GridSearchCV(keras_clf, param_distribs,
-                           cv=3,
-                           verbose=2)
+        clf = GridSearchCV(estimator=keras_clf,
+                           param_grid=param_grid,
+                           cv=config["tuning_train"]["cv"],
+                           verbose=config["tuning_train"]["verbose"])
+    else:
+        print("Please define a valid Fine-tuning algorithm.")
+        raise Exception
+
+    return clf
+
+
+
