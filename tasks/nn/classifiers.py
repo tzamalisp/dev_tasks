@@ -13,7 +13,7 @@ from tensorflow.keras.wrappers.scikit_learn import KerasClassifier
 from sklearn.model_selection import RandomizedSearchCV, GridSearchCV
 
 
-def build_model():
+def build_model(n_classes=None):
     model = Sequential()
     model.add(Conv2D(32, (3, 3), activation='relu', kernel_initializer='he_uniform', input_shape=(28, 28, 1)))
     model.add(BatchNormalization())
@@ -21,7 +21,7 @@ def build_model():
     model.add(Flatten())
     model.add(Dense(100, activation='relu', kernel_initializer='he_uniform'))
     model.add(BatchNormalization())
-    model.add(Dense(10, activation='softmax'))
+    model.add(Dense(n_classes, activation='softmax'))
 
     model.compile(loss="sparse_categorical_crossentropy",
                   optimizer="sgd",

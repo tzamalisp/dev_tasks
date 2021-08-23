@@ -4,6 +4,7 @@ clf_params:
   use_multiprocessing: true
   shuffle: true
   verbose: 1
+  n_classes: null
 
 tuning_train:
   n_jobs: null
